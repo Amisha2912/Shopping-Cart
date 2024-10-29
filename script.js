@@ -82,16 +82,23 @@ function updateToUI1(){
 
 function updateToUi2(){
     let addToCart='';
-    data.forEach((listItem)=>{
-        addToCart += `
-        <div class="addCarts">
-        <span>${listItem.products}</span>
-        <span>:- ${listItem.items}</span>
-        <span> x</span>
-        <span>${listItem.prices}</span>
-        </div>
-        `;
-    });
+    if (data.length === 0) {
+        // Display message when no products are added
+        addToCart= '<h4>No product Added to the cart!!</h4>';
+    }
+
+    else{
+        data.forEach((listItem)=>{
+            addToCart += `
+            <div class="addCarts">
+            <span>${listItem.products}</span>
+            <span>:- ${listItem.items}</span>
+            <span> x</span>
+            <span>${listItem.prices}</span>
+            </div>
+            `;
+        });
+    }
     cartList.innerHTML=addToCart;
     cartList.appendChild(totalDisplay);
     totalDisplay.innerHTML = `Total=> Rs:${totalSum}`; // Display total sum
